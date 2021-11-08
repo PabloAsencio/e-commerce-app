@@ -9,6 +9,8 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -23,7 +25,9 @@ import static com.auth0.jwt.algorithms.Algorithm.HMAC512;
 
 public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilter {
 
-	 private AuthenticationManager authenticationManager;
+    private static final Logger log = LoggerFactory.getLogger(JWTAuthenticationFilter.class);
+
+    private AuthenticationManager authenticationManager;
 
     public JWTAuthenticationFilter(AuthenticationManager authenticationManager) {
         this.authenticationManager = authenticationManager;
@@ -35,12 +39,14 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
     	try {
     		User credentials = new ObjectMapper()
                     .readValue(req.getInputStream(), User.class);
-    		
-    		return authenticationManager.authenticate(
+
+            final Authentication authenticate = authenticationManager.authenticate(
                     new UsernamePasswordAuthenticationToken(
                             credentials.getUsername(),
                             credentials.getPassword(),
                             new ArrayList<>()));
+            log.info("User {} authenticated successfully.", credentials.getUsername());
+            return authenticate;
     	} catch (IOException e) {
     		throw new RuntimeException(e);
     	}
