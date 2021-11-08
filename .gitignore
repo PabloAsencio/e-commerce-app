@@ -1,5 +1,6 @@
 HELP.md
 target/
+app.log
 
 ### STS ###
 .apt_generated
