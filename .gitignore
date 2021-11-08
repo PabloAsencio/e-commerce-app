@@ -2,6 +2,7 @@ HELP.md
 target/
 src/main/resources/screenshots/
 app.log
+
 ### STS ###
 .apt_generated
 .classpath
