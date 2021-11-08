@@ -15,10 +15,11 @@ import org.springframework.security.web.authentication.www.BasicAuthenticationFi
 import org.springframework.stereotype.Component;
 
 import com.auth0.jwt.JWT;
+import org.springframework.stereotype.Controller;
 
 import static com.auth0.jwt.algorithms.Algorithm.HMAC512;
 
-@Component
+@Controller
 public class JWTAuthenticationVerficationFilter extends BasicAuthenticationFilter {
 	
 	public JWTAuthenticationVerficationFilter(AuthenticationManager authManager) {
