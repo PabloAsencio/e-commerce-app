@@ -6,36 +6,23 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.json.AutoConfigureJsonTesters;
-import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
-import org.springframework.boot.test.json.JacksonTester;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.junit4.SpringRunner;
-import org.springframework.test.web.servlet.MockMvc;
 
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @RunWith(SpringRunner.class)
-@AutoConfigureJsonTesters
 public class ItemControllerUnitTest {
-
-    @Autowired
-    private JacksonTester<Item> json;
 
     @MockBean
     private ItemRepository itemRepository;
@@ -64,12 +51,9 @@ public class ItemControllerUnitTest {
         itemController = new ItemController(itemRepository);
     }
 
-    @After
-    public void tearDown() throws Exception {
-    }
 
     @Test
-    public void getItems() throws Exception {
+    public void getItems() {
         final ResponseEntity<List<Item>> response = itemController.getItems();
         final List<Item> actualItems = response.getBody();
         assertEquals( response.getStatusCode(), HttpStatus.OK);

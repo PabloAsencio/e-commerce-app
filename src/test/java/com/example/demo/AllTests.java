@@ -1,9 +1,6 @@
 package com.example.demo;
 
-import com.example.demo.controllers.CartControllerTest;
-import com.example.demo.controllers.ItemControllerUnitTest;
-import com.example.demo.controllers.OrderControllerTest;
-import com.example.demo.controllers.UserControllerTest;
+import com.example.demo.controllers.*;
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
 
@@ -13,7 +10,8 @@ import org.junit.runners.Suite;
                 UserControllerTest.class,
                 CartControllerTest.class,
                 OrderControllerTest.class,
-                ItemControllerUnitTest.class
+                ItemControllerUnitTest.class,
+                ItemControllerIntegrationTest.class
         })
 public class AllTests {
 }

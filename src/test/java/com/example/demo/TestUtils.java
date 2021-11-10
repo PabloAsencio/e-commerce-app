@@ -7,12 +7,14 @@ import java.util.List;
 
 public class TestUtils {
 
-    public static void authenticate(TestRestTemplate restTemplate) {
+    // See https://kreuzwerker.de/en/post/integration-tests-with-spring-boot and
+    // https://www.baeldung.com/spring-rest-template-builder
+    public static void authenticate(TestRestTemplate restTemplate, int port) {
         String credentials = "{ \"username\": \"default\", \"password\": \"password\"}";
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON_UTF8);
         HttpEntity<String> entity = new HttpEntity<>(credentials, headers);
-        final ResponseEntity<Object> response = restTemplate.exchange("/login", HttpMethod.POST, entity, Object.class);
+        final ResponseEntity<Object> response = restTemplate.exchange("http://localhost:" + port + "/login", HttpMethod.POST, entity, Object.class);
         final List<String> authorizations = response.getHeaders().get(HttpHeaders.AUTHORIZATION);
         String token = authorizations.get(0);
         restTemplate.getRestTemplate().getInterceptors().add((httpRequest, body, execution) -> {
