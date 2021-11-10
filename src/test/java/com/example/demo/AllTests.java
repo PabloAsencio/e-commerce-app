@@ -7,7 +7,8 @@ import org.junit.runners.Suite;
 @RunWith(Suite.class)
 @Suite.SuiteClasses({
                 SareetaApplicationTests.class,
-                UserControllerTest.class,
+                UserControllerUnitTest.class,
+                UserControllerIntegrationTest.class,
                 CartControllerTest.class,
                 OrderControllerTest.class,
                 ItemControllerUnitTest.class,
