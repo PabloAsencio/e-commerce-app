@@ -9,7 +9,7 @@ import org.junit.runners.Suite;
                 SareetaApplicationTests.class,
                 UserControllerUnitTest.class,
                 UserControllerIntegrationTest.class,
-                CartControllerTest.class,
+                CartControllerUnitTest.class,
                 OrderControllerTest.class,
                 ItemControllerUnitTest.class,
                 ItemControllerIntegrationTest.class
