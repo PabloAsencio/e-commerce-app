@@ -10,7 +10,7 @@ import org.junit.runners.Suite;
                 UserControllerUnitTest.class,
                 UserControllerIntegrationTest.class,
                 CartControllerUnitTest.class,
-                OrderControllerTest.class,
+                OrderControllerUnitTest.class,
                 ItemControllerUnitTest.class,
                 ItemControllerIntegrationTest.class
         })
