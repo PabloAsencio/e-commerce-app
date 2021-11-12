@@ -16,6 +16,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import java.util.Random;
+
 import static org.junit.Assert.*;
 
 
@@ -57,7 +59,7 @@ public class UserControllerIntegrationTest {
 
     @Test
     public void findByIdNotFound() {
-        Long userId = 2L;
+        Long userId = 3000L;
         final ResponseEntity<User> response = restTemplate.getForEntity(
                 BASE_URL + port + API_ENDPOINT + "id/" + userId,
                 User.class
@@ -89,8 +91,10 @@ public class UserControllerIntegrationTest {
 
     @Test
     public void createUserHappyPath() {
+        Random random = new Random(System.currentTimeMillis());
+        Integer userNumber = random.nextInt(2500) + 100;
         CreateUserRequest createUserRequest = new CreateUserRequest();
-        createUserRequest.setUsername("user");
+        createUserRequest.setUsername("user" + userNumber);
         createUserRequest.setPassword("password");
         createUserRequest.setConfirmPassword("password");
 
